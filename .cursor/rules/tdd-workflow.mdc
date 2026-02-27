@@ -1,0 +1,64 @@
+---
+description: Test Driven Development workflow and requirements
+alwaysApply: true
+---
+
+# Test Driven Development Workflow
+
+## Core Principle
+
+**All code changes must follow TDD: tests first, then implementation.**
+
+## Required Workflow
+
+### Step 1: Write Failing Test
+- Write the test that describes the desired behavior
+- The test should fail because the functionality doesn't exist yet
+- Include clear test names that describe what is being tested
+
+### Step 2: Verify Test Fails
+- Run: `go test ./... -v`
+- **Confirm the test fails** - this validates the test is actually testing something
+- If the test passes without implementation, the test is invalid
+
+### Step 3: Write Minimal Implementation
+- Write only the code necessary to make the test pass
+- Don't add extra features or optimizations yet
+- Keep it simple
+
+### Step 4: Verify Test Passes
+- Run: `go test ./... -v`
+- **All tests must pass** before proceeding
+
+### Step 5: Refactor (if needed)
+- Improve code quality while keeping tests green
+- Run tests after refactoring to ensure nothing broke
+
+## Before Proposing Changes
+
+**Always run these commands and ensure they pass:**
+
+```bash
+# Format code
+go fmt ./...
+
+# Run tests
+go test ./...
+
+# Run linter
+golangci-lint run ./...
+```
+
+## Test Requirements
+
+- Every exported function should have tests
+- Test edge cases and error conditions
+- Use meaningful test names: `TestFunctionName_Scenario_ExpectedResult`
+- Keep tests focused - one assertion per test when possible
+
+## Anti-Patterns to Avoid
+
+❌ Writing implementation before tests
+❌ Skipping test execution
+❌ Committing code with failing tests
+❌ Writing tests that pass without implementation

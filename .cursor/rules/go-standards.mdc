@@ -1,0 +1,91 @@
+---
+description: Go coding standards and best practices for this project
+globs: **/*.go
+alwaysApply: false
+---
+
+# Go Coding Standards
+
+## Test Driven Development
+
+**Always follow TDD workflow:**
+
+1. Write the test first (it should fail)
+2. Run the test to confirm it fails: `go test ./...`
+3. Write minimal code to make the test pass
+4. Refactor if needed
+5. Run tests again to ensure everything passes
+
+**Never write implementation code before tests.**
+
+## Code Formatting
+
+- Always format code with `go fmt ./...` before committing
+- Use `gofmt` defaults (tabs for indentation, spaces for alignment)
+- Run formatting as part of pre-commit checks
+
+## Linting
+
+- Use `golangci-lint` for all linting checks
+- Run `golangci-lint run ./...` before committing
+- Fix all linting errors before proposing changes
+- Configuration is in `.golangci.yml`
+
+## Code Style
+
+### Error Handling
+
+```go
+// ❌ BAD - ignoring errors
+result, _ := someFunction()
+
+// ✅ GOOD - handle errors explicitly
+result, err := someFunction()
+if err != nil {
+    return fmt.Errorf("failed to do something: %w", err)
+}
+```
+
+### Naming Conventions
+
+- Use camelCase for unexported functions and variables
+- Use PascalCase for exported functions and types
+- Keep names concise but descriptive
+- Avoid abbreviations unless they're widely understood
+
+### Package Organization
+
+- `cmd/` - application entry points
+- `internal/` - private application code
+- `pkg/` - library code that can be imported by other projects
+
+## Testing
+
+- Test files should be named `*_test.go`
+- Use table-driven tests for multiple test cases
+- Test both success and failure cases
+- Use `t.Helper()` in test helper functions
+
+```go
+// ✅ GOOD - table-driven test
+func TestCalculate(t *testing.T) {
+    tests := []struct {
+        name     string
+        input    int
+        expected int
+    }{
+        {"positive", 5, 25},
+        {"zero", 0, 0},
+        {"negative", -1, 1},
+    }
+    
+    for _, tt := range tests {
+        t.Run(tt.name, func(t *testing.T) {
+            got := Calculate(tt.input)
+            if got != tt.expected {
+                t.Errorf("Calculate(%d) = %d, want %d", tt.input, got, tt.expected)
+            }
+        })
+    }
+}
+```

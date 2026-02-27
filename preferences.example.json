@@ -1,0 +1,14 @@
+{
+  "temperature": {
+    "min": 15,
+    "max": 25,
+    "unit": "celsius"
+  },
+  "humidity": {
+    "min": 40,
+    "max": 70
+  },
+  "precipitation": "light",
+  "air_quality": "moderate",
+  "walk_duration": 30
+}
