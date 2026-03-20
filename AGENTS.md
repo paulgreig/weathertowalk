@@ -14,6 +14,7 @@ All standard commands are in the `Makefile`: `make test`, `make fmt`, `make lint
 
 - **Go 1.25.6** — installed via the Go toolchain wrapper; first invocation may download the toolchain.
 - **golangci-lint v2** — installed at `~/go/bin/golangci-lint`. Ensure `$HOME/go/bin` is on `PATH` before running `make lint`.
+- **Android APK builds** — use the **Dev Container** (`.devcontainer/`) for JDK 17, Android SDK API 34, NDK, and `gomobile` on `PATH`. Then `make android-apk` from the repo root. For a bare Linux host without Android Studio, `scripts/setup-android-sdk.sh` installs the command-line SDK; set `ANDROID_HOME` / `ANDROID_NDK_HOME` as printed by the script.
 
 ### Gotchas
 
