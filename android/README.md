@@ -13,7 +13,7 @@ make android-apk
 ## Prerequisites (manual / Android Studio)
 
 - **JDK 17**
-- **Android SDK** (API 34) and **NDK** — install [Android Studio](https://developer.android.com/studio) or run `scripts/setup-android-sdk.sh` (Linux CLI tools), set `ANDROID_HOME`
+- **Android SDK** (API 34) and **NDK** — install [Android Studio](https://developer.android.com/studio) or run `scripts/setup-android-sdk.sh` (Linux CLI tools), set `ANDROID_HOME` and **`ANDROID_NDK_HOME` to NDK 21.4.x** for `gomobile bind` (see `docs/APK_BUILD_VERIFICATION.md`)
 - **gomobile**: `go install golang.org/x/mobile/cmd/gomobile@latest` then `gomobile init`
 
 ## Build the Go library (AAR)

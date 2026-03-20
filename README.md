@@ -70,6 +70,7 @@ All commands must pass before proposing changes.
 │   └── weather/         # Weather models, parser, HTTP client
 ├── mobile/              # gomobile bindings for Android (see android/README.md)
 ├── android/             # Android app (APK) with foreground service
+├── tools/               # build-tag tools deps (keeps golang.org/x/mobile for gomobile)
 └── .cursor/             # Cursor IDE rules and skills
     ├── rules/           # Coding standards and conventions
     └── skills/          # Project-specific skills
@@ -91,9 +92,11 @@ Output: `android/app/build/outputs/apk/debug/app-debug.apk`.
 
 ### Manual setup
 
-1. Install **JDK 17** and the **Android SDK + NDK** (API 34), set `ANDROID_HOME` (and `ANDROID_NDK_HOME` if needed). On Linux you can use `scripts/setup-android-sdk.sh` for a CLI-only SDK install.
+1. Install **JDK 17** and the **Android SDK + NDK** (API 34), set `ANDROID_HOME`. For **gomobile**, set `ANDROID_NDK_HOME` to an **NDK 21.4.x** side-by-side install (see `docs/APK_BUILD_VERIFICATION.md` — NDK 26+ is often rejected by `gomobile bind`). On Linux you can use `scripts/setup-android-sdk.sh` for a CLI-only SDK install.
 2. `go install golang.org/x/mobile/cmd/gomobile@latest` and `gomobile init`.
 3. `make android-aar` (writes `android/app/libs/weathertowalk.aar`), then `cd android && ./gradlew assembleDebug`, or run `make android-apk` from the repo root.
+
+Verification log and demo video: **`docs/APK_BUILD_VERIFICATION.md`** and **`docs/weathertowalk-apk-demo.mp4`**.
 
 The app exposes a **foreground service** that calls the Go `RunWalk` binding on a background thread and shows the text report in the UI. Use a valid OpenWeatherMap API key and coordinates. See `android/README.md` for details.
 

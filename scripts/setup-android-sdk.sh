@@ -4,7 +4,8 @@
 set -euo pipefail
 
 ANDROID_CLI_TOOLS_VERSION="${ANDROID_CLI_TOOLS_VERSION:-11076708}"
-NDK_VERSION="${NDK_VERSION:-26.3.11579264}"
+# gomobile bind rejects NDK 26+ metadata on many hosts; 21.4.x is a known-good side-by-side install.
+NDK_VERSION="${NDK_VERSION:-21.4.7075529}"
 INSTALL_ROOT="${ANDROID_SDK_ROOT:-${ANDROID_HOME:-$HOME/android-sdk}}"
 
 echo "Installing Android SDK under: $INSTALL_ROOT"
@@ -33,7 +34,10 @@ export ANDROID_SDK_ROOT="$INSTALL_ROOT"
 export ANDROID_HOME="$INSTALL_ROOT"
 export PATH="${PATH}:${ANDROID_HOME}/cmdline-tools/latest/bin:${ANDROID_HOME}/platform-tools"
 
+# `yes` may exit 141 (SIGPIPE) when sdkmanager closes the pipe; do not fail the script (set -e + pipefail).
+set +o pipefail
 yes | sdkmanager --licenses
+set -o pipefail
 sdkmanager \
   "platform-tools" \
   "platforms;android-34" \

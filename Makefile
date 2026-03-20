@@ -33,7 +33,7 @@ clean: ## Clean build artifacts
 android-aar: ## Build android/app/libs/weathertowalk.aar via gomobile (needs ANDROID_HOME, NDK)
 	@test -n "$$ANDROID_HOME" || (echo "Set ANDROID_HOME to your Android SDK path." && exit 1)
 	@test -f "$(GOMOBILE)" || (echo "Install gomobile: go install golang.org/x/mobile/cmd/gomobile@latest && gomobile init" && exit 1)
-	cd mobile && $(GOMOBILE) bind -target=android -o ../android/app/libs/weathertowalk.aar .
+	cd mobile && env GOTOOLCHAIN=auto $(GOMOBILE) bind -target=android -o ../android/app/libs/weathertowalk.aar .
 
 android-apk: android-aar ## Build debug APK (android/app/build/outputs/apk/debug/app-debug.apk)
 	cd android && ./gradlew assembleDebug

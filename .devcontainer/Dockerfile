@@ -23,8 +23,8 @@ RUN mkdir -p ${ANDROID_SDK_ROOT}/cmdline-tools \
 
 ENV PATH=${PATH}:${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin:${ANDROID_SDK_ROOT}/platform-tools
 
-# Match android/app/build.gradle.kts (compileSdk 34) and gomobile NDK expectations
-ARG NDK_VERSION=26.3.11579264
+# gomobile bind requires an NDK whose API metadata it accepts (21.4.x works; 26.x often fails with "unsupported API version").
+ARG NDK_VERSION=21.4.7075529
 RUN set -eux \
     && yes | sdkmanager --licenses \
     && sdkmanager \
