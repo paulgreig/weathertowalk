@@ -54,4 +54,3 @@ func TestScoreSlot_TemperaturePenaltyApplied(t *testing.T) {
 		t.Fatalf("ScoreSlot(temp slightly high) = %d, want between 1 and 99", score)
 	}
 }
-

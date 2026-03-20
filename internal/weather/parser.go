@@ -110,10 +110,11 @@ func kelvinToCelsius(k float64) float64 {
 	return k - 273.15
 }
 
-func firstWeatherMain(list []struct{ Main string `json:"main"` }) string {
+func firstWeatherMain(list []struct {
+	Main string `json:"main"`
+}) string {
 	if len(list) == 0 {
 		return ""
 	}
 	return list[0].Main
 }
-

@@ -34,4 +34,3 @@ type ForecastSlot struct {
 	Conditions       string
 	WalkabilityScore int
 }
-

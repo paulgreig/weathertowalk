@@ -43,4 +43,3 @@ func TestDetectLocation_ErrorOnFailureStatus(t *testing.T) {
 		t.Fatal("DetectLocation() err = nil, want error for status=fail")
 	}
 }
-

@@ -22,12 +22,12 @@ func TestWeatherData_ModelShapes(t *testing.T) {
 		},
 		Forecast: []ForecastSlot{
 			{
-				Time:            now.Add(1 * time.Hour),
-				Temperature:     21.0,
-				Humidity:        58,
-				Precipitation:   0.1,
-				AirQuality:      45,
-				Conditions:      "partly cloudy",
+				Time:             now.Add(1 * time.Hour),
+				Temperature:      21.0,
+				Humidity:         58,
+				Precipitation:    0.1,
+				AirQuality:       45,
+				Conditions:       "partly cloudy",
 				WalkabilityScore: 0,
 			},
 		},
@@ -42,4 +42,3 @@ func TestWeatherData_ModelShapes(t *testing.T) {
 		t.Fatalf("Forecast length = %d, want 1", len(data.Forecast))
 	}
 }
-
