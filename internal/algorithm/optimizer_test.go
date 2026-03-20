@@ -40,4 +40,3 @@ func TestFindOptimalWindows_NoSuitableSlotsReturnsEmpty(t *testing.T) {
 		t.Fatalf("FindOptimalWindows() len = %d, want 0 for unsuitable slots", len(recs))
 	}
 }
-

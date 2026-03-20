@@ -121,4 +121,3 @@ func TestToWeatherDataCombinesCurrentAndForecast(t *testing.T) {
 		t.Errorf("Timestamp = %v, want %v", data.Timestamp, now)
 	}
 }
-

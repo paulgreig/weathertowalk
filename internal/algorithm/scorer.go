@@ -120,4 +120,3 @@ func ScoreSlot(slot weather.ForecastSlot, prefs *config.UserPreferences) int {
 	}
 	return score
 }
-

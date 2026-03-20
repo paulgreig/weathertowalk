@@ -57,4 +57,3 @@ func TestRenderWeatherSummary_IncludesKeySections(t *testing.T) {
 		}
 	}
 }
-

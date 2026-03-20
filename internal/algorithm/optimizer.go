@@ -60,4 +60,3 @@ func FindOptimalWindows(slots []weather.ForecastSlot, prefs *config.UserPreferen
 	}
 	return recs
 }
-
