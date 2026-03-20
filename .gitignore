@@ -30,3 +30,6 @@ go.work
 # OS
 .DS_Store
 Thumbs.db
+
+# Android gomobile AAR (build with: make android-aar)
+android/app/libs/weathertowalk.aar

@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Weather to Walk</string>
+    <string name="hint_api_key">OpenWeatherMap API key (32 hex chars)</string>
+    <string name="hint_base_url">API base URL (optional)</string>
+    <string name="hint_lat">Latitude</string>
+    <string name="hint_lon">Longitude</string>
+    <string name="action_fetch_service">Fetch via foreground service</string>
+    <string name="channel_name">Weather fetch</string>
+    <string name="notification_title">Weather to Walk</string>
+    <string name="notification_text">Fetching walking weather…</string>
+</resources>
