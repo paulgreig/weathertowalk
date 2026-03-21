@@ -33,3 +33,8 @@ Thumbs.db
 
 # Android gomobile AAR (build with: make android-aar)
 android/app/libs/weathertowalk.aar
+android/app/libs/weathertowalk-sources.jar
+
+# ffmpeg concat intermediates for docs demo (optional)
+docs/demo-part*.mp4
+docs/demo-concat.txt

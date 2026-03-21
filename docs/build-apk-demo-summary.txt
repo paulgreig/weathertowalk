@@ -1,0 +1,12 @@
+Weather to Walk — APK verification (Mar 2026)
+
+Build
+  • gomobile AAR: weathertowalk.aar (NDK 21.4, Go 1.25.6 toolchain)
+  • Gradle 8.7: ./gradlew assembleDebug — BUILD SUCCESSFUL
+
+Install & launch (Android Emulator, API 34, x86_64)
+  • adb install -r app-debug.apk — Success
+  • adb shell am start …/MainActivity — running
+  • adb device: emulator-5554
+
+Note: Headless emulator screenrecord is low-FPS; see PNG screenshot for UI.

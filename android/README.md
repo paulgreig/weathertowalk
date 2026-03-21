@@ -2,10 +2,18 @@
 
 This module is a minimal **Android Studio / Gradle** app that runs the same Go logic as the CLI via **gomobile** bindings.
 
-## Prerequisites
+## Dev Container
+
+From the repository root, use **Dev Containers** (`.devcontainer/`) so **JDK 17**, **Android SDK**, **NDK**, **Go**, and **gomobile** are preinstalled. Then:
+
+```bash
+make android-apk
+```
+
+## Prerequisites (manual / Android Studio)
 
 - **JDK 17**
-- **Android SDK** (API 34) and **NDK** — install [Android Studio](https://developer.android.com/studio) or command-line tools, set `ANDROID_HOME`
+- **Android SDK** (API 34) and **NDK** — install [Android Studio](https://developer.android.com/studio) or run `scripts/setup-android-sdk.sh` (Linux CLI tools), set `ANDROID_HOME` and **`ANDROID_NDK_HOME` to NDK 21.4.x** for `gomobile bind` (see `docs/APK_BUILD_VERIFICATION.md`)
 - **gomobile**: `go install golang.org/x/mobile/cmd/gomobile@latest` then `gomobile init`
 
 ## Build the Go library (AAR)
@@ -26,6 +34,14 @@ gomobile bind -target=android -o ../android/app/libs/weathertowalk.aar .
 ```
 
 ## Build the APK
+
+From the repo root (after `make android-aar` or via `make android-apk`):
+
+```bash
+make android-apk
+```
+
+Or only Gradle, if the AAR is already built:
 
 ```bash
 cd android
