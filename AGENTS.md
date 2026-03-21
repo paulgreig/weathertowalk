@@ -21,4 +21,4 @@ All standard commands are in the `Makefile`: `make test`, `make fmt`, `make lint
 - `make lint` returns exit code 1 due to pre-existing lint issues in the codebase (errcheck, gocritic, gosec, revive). These are not regressions.
 - The app requires `WEATHER_API_KEY` (32-char hex, from OpenWeatherMap free tier). Without it, `config.Load()` fails immediately on startup.
 - To run the app locally without a real API key, start a mock HTTP server and set `WEATHER_API_URL` to override the base URL (e.g. `http://127.0.0.1:8999/data/2.5`). Set `WEATHER_LAT`/`WEATHER_LON` to skip IP geolocation.
-- There are no databases, Docker containers, or background services. The app is a standalone CLI that makes outbound HTTP calls only.
+- There are no databases or Docker containers. The CLI is a standalone binary; an **optional Android APK** under `android/` uses **gomobile** (`mobile/` package) and a **foreground service** to run the same logic on-device (see `README.md` and `android/README.md`).

@@ -65,12 +65,25 @@ All commands must pass before proposing changes.
 │   ├── algorithm/       # Scoring and window optimization
 │   ├── config/          # Config and preferences
 │   ├── location/        # Location utilities
+│   ├── service/         # Shared fetch + recommendation logic (CLI + mobile)
 │   ├── ui/              # Terminal UI rendering
 │   └── weather/         # Weather models, parser, HTTP client
+├── mobile/              # gomobile bindings for Android (see android/README.md)
+├── android/             # Android app (APK) with foreground service
 └── .cursor/             # Cursor IDE rules and skills
     ├── rules/           # Coding standards and conventions
     └── skills/          # Project-specific skills
 ```
+
+## Android APK (foreground service)
+
+The same weather logic runs on-device via **[gomobile](https://pkg.go.dev/golang.org/x/mobile/cmd/gomobile)**:
+
+1. Install the Android SDK and NDK, set `ANDROID_HOME`, then `go install golang.org/x/mobile/cmd/gomobile@latest` and `gomobile init`.
+2. From the repo root: `make android-aar` (writes `android/app/libs/weathertowalk.aar`).
+3. Build the APK: `cd android && ./gradlew assembleDebug` (install `build/outputs/apk/debug/app-debug.apk` on a device or emulator).
+
+The app exposes a **foreground service** that calls the Go `RunWalk` binding on a background thread and shows the text report in the UI. Use a valid OpenWeatherMap API key and coordinates. See `android/README.md` for details.
 
 ## Running the app
 

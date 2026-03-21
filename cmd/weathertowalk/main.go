@@ -1,3 +1,4 @@
+// Package main is the command-line entry point for Weather to Walk.
 package main
 
 import (
@@ -8,11 +9,9 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/paulgreig/weathertowalk/internal/algorithm"
 	"github.com/paulgreig/weathertowalk/internal/config"
 	"github.com/paulgreig/weathertowalk/internal/location"
-	"github.com/paulgreig/weathertowalk/internal/ui"
-	"github.com/paulgreig/weathertowalk/internal/weather"
+	"github.com/paulgreig/weathertowalk/internal/service"
 )
 
 func main() {
@@ -22,23 +21,14 @@ func main() {
 		log.Fatalf("configuration error: %v", err)
 	}
 
-	// Load preferences (future: from file/flags). For now: defaults.
-	prefs := config.DefaultPreferences()
-
 	reader := bufio.NewReader(os.Stdin)
 
 	for {
-		// Determine location: from env (WEATHER_LAT/WEATHER_LON) or fallback.
 		loc := resolveLocationFromEnv()
-
-		client := weather.NewClient(cfg.APIKey, cfg.APIBaseURL)
-		data, err := client.FetchWeather(loc)
+		out, err := service.RunWalkReport(cfg.APIKey, cfg.APIBaseURL, loc.Lat, loc.Lon)
 		if err != nil {
 			log.Fatalf("failed to fetch weather: %v", err)
 		}
-
-		recs := algorithm.FindOptimalWindows(data.Forecast, prefs)
-		out := ui.RenderWeatherSummary(data, recs)
 		fmt.Println(out)
 
 		fmt.Print("\n[r]efresh, [q]uit: ")

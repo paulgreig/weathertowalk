@@ -1,4 +1,6 @@
-.PHONY: test fmt lint vet clean help
+GOMOBILE := $(shell go env GOPATH)/bin/gomobile
+
+.PHONY: test fmt lint vet clean help android-aar
 
 help: ## Show this help message
 	@echo 'Usage: make [target]'
@@ -27,3 +29,8 @@ check: fmt vet lint test ## Run all checks (format, vet, lint, test)
 clean: ## Clean build artifacts
 	go clean ./...
 	rm -f coverage.out coverage.html
+
+android-aar: ## Build android/app/libs/weathertowalk.aar via gomobile (needs ANDROID_HOME, NDK)
+	@test -n "$$ANDROID_HOME" || (echo "Set ANDROID_HOME to your Android SDK path." && exit 1)
+	@test -f "$(GOMOBILE)" || (echo "Install gomobile: go install golang.org/x/mobile/cmd/gomobile@latest && gomobile init" && exit 1)
+	cd mobile && $(GOMOBILE) bind -target=android -o ../android/app/libs/weathertowalk.aar .
